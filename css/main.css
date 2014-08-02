@@ -35,7 +35,21 @@ footer {
     color: #fff;
 }
 
+.centered-cell h4 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
+#shopping-cart {
+  background-color: #fff;
+  margin-top: -40px;  
+}
+#shopping-cart .btn {
+  margin-bottom: 40px;
+}
 
-
+i {
+    color: #fff;
+}
 

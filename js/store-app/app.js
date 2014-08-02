@@ -23,24 +23,36 @@ storeApp.controller('MainCtrl', function ($scope) {
 
   $scope.orderProp = 'name';
 
-    $scope.addItem = function(item) {
-      $scope.cartItems.push(item); 
-    }
+  $scope.addItem = function(item) {
+    $scope.cartItems.push(item); 
+  }
 
 
   $scope.removeItem = function(index) {
-      $scope.cartItems.splice(index, 1);
+      $scope.cartItems.splice(index, 1).fadeOut(800);
+      $scope.cartItems.fadeOut(5000, done)
   };
 
+});
 
+// Jquery Section 
 
+$(function() {
+  $('a').on('click', function() {
+      $(this).append(' <i class="fa fa-check"></i>');
+      $('i').fadeOut(800);
+  });
 });
 
 
 
-//----------------------------------------------------------------
-// shopping cart
-//
+
+
+
+
+
+
+
 
 
 
