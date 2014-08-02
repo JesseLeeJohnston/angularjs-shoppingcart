@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="storeApp">
 <head>
 	<title>yWorld Shopping Cart Test</title>
 	<!-- INCLUDE REQUIRED THIRD PARTY LIBRARY JAVASCRIPT AND CSS -->
@@ -37,7 +37,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<section id="products">
+<section id="products" ng-controller="mainController">
   <div class="container">
     <div class="row">
       <div class="text-center">
@@ -84,7 +84,7 @@
     </div>
   </div>
 </section>
-<section id="cart">
+<section id="cart" ng-controller="cartController">
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
