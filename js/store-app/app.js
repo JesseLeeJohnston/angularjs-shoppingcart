@@ -1,7 +1,7 @@
 var storeApp = angular.module('storeApp', []);
 
 storeApp.controller('MainCtrl', function ($scope) {
-  $scope.products = [
+  $scope.items = [
     {"name":"Grey Suit Jacket", "image":"http://placehold.it/400x400", "uniqueId":"SJ001", "price":399, "description":"Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." }, 
     {"name":"Black Suit Jacket", "image":"http://placehold.it/400x400", "uniqueId":"SJ002", "price":449, "description":"Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." }, 
     {"name":"Brown Suit Jacket", "image":"http://placehold.it/400x400", "uniqueId":"SJ003", "price":399, "description":"Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." }, 
@@ -19,5 +19,32 @@ storeApp.controller('MainCtrl', function ($scope) {
     {"name":"Purple Socks", "image":"http://placehold.it/400x400", "uniqueId":"SKS005", "price":9, "description":"Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." }
   ];
 
+  $scope.cartItems = [];
+
   $scope.orderProp = 'name';
+
+    $scope.addItem = function(item) {
+      $scope.cartItems.push(item); 
+    }
+
+
+  $scope.removeItem = function(index) {
+      $scope.cartItems.splice(index, 1);
+  };
+
+
+
 });
+
+
+
+//----------------------------------------------------------------
+// shopping cart
+//
+
+
+
+
+
+
+

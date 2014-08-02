@@ -24,3 +24,18 @@ footer {
     padding: 20px;
     color: #666;
 }
+
+.cart {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+
+
+
+
+

@@ -33,13 +33,41 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">CART</a></li>
+        <li><a ng-click="cartIsOpen = !cartIsOpen" href="#" class="cart">VIEW CART</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
 <section ng-controller="MainCtrl">
+<section ng-show="cartIsOpen">
+  <div class="container">
+    <div class="row">
+      <div item-card class="col-sm-8 col-sm-offset-2">
+        <div class="text-center margin-top-80"><h3>Your Shopping Cart</h3></div>
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+            <tr ng-repeat="item in cartItems | orderBy:orderProp">
+              <td><img src="{{item.image}}" width="100px;" height="100px;"></td>
+              <td>{{item.name}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.price | currency : symbol}}</td>
+              <td><button class="btn btn-danger" ng-click="removeItem()">X</button></td>
+            </tr>
+          </table>
+        </div>
+        <button class="btn btn-success pull-right">Checkout</button>
+      </div>
+    </div>
+  </div>
+</section>
   <div class="container">
     <div class="row">
       <div class="text-center">
@@ -51,17 +79,19 @@
             </select>    
           </ol>  
       </div>
-      <div class="col-sm-3" ng-repeat="product in products | orderBy:orderProp">
-        <h2>{{product.name}}</h2>
-        <img src="{{product.image}}" class="img-responsive">
-        <p class="price">{{product.price | currency : symbol}}</p>
-        <p>{{product.description}}</p>
-        <p><small>Product id: #{{product.uniqueId}}</small></p>
-        <button class="btn btn-primary">Add to Cart</button>
+      <div class="col-sm-3" ng-repeat="item in items | orderBy:orderProp">
+        <h2>{{item.name}}</h2>
+        <img src="{{item.image}}" class="img-responsive">
+        <p class="price">{{item.price | currency : symbol}}</p>
+        <p>{{item.description}}</p>
+        <p><small>Product id: #{{item.uniqueId}}</small></p>
+        <button class="btn btn-primary" href="#" ng-click="addItem(item)">Add to Cart</button>
       </div>              
     </div>
   </div>
 </section>
+
+
   <footer class="text-center">
     <p>Copyright 2014 yWorld Online Store. All rights reserved.</p>
   </footer>

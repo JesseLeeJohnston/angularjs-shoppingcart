@@ -1,13 +1,13 @@
-<section id="cart" ng-controller="cartController">
+<section ng-show="cartIsOpen">
   <div class="container">
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+      <div item-card class="col-sm-8 col-sm-offset-2">
         <div class="text-center margin-top-80"><h3>Your Shopping Cart</h3></div>
         <div class="table-responsive">
           <table class="table">
-            <tr>
-              <th>Image</th>
-              <th>Item Name</th>
+            <tr ng-repeat="product in cart.products | orderBy:'name'">
+              <th>{{product.name}}</th>
+              <th>{{product.name}}</th>
               <th>Description</th>
               <th>Price</th>
               <th>Remove</th>
