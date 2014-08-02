@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="storeApp">
-<head>
+<html ng-app="storeApp">
+<head lang="en">
 	<title>yWorld Shopping Cart Test</title>
 	<!-- INCLUDE REQUIRED THIRD PARTY LIBRARY JAVASCRIPT AND CSS -->
 	<script type="text/javascript" src="js/angular.min.js"></script>
@@ -8,13 +8,16 @@
 	<link rel="stylesheet" href="css/main.css">
 
 	<!-- INCLUDE APPLICATION SPECIFIC CSS AND JAVASCRIPT -->
+      <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+  <script type="text/javascript" src="js/store-app/services.js"></script>
 	<script type="text/javascript" src="js/store-app/app.js"></script>
 	<script type="text/javascript" src="js/store-app/controllers/mainController.js"></script>
 
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,7 +30,6 @@
       </button>
       <a class="navbar-brand" href="#">yWorld Store</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -37,78 +39,26 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<section id="products" ng-controller="mainController">
+<section ng-controller="MainCtrl">
   <div class="container">
     <div class="row">
       <div class="text-center">
         <h3>Welcome to our store</h3>
           <ol class="breadcrumb">
-            <li><a href="#">Sort By Price Accending</a></li>
-            <li><a href="#">Sort By Price Decending</a></li>
-            <li><a href="#">Sort By Name Accending</a></li>
-            <li><a href="#">Sort By Name Decending</a></li>
-          </ol>
+            <select ng-model="orderProp">
+              <option value="name">Ordering By Product Name</option>
+              <option value="price">Ordering By Product Price</option>
+            </select>    
+          </ol>  
       </div>
-      <div class="col-sm-3">
-        <h2>Product Name</h2>
-        <img src="http://placehold.it/400x400" class="img-responsive">
-        <p class="price">$000</p>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
-        <p><small>Product id: #444000</small></p>
+      <div class="col-sm-3" ng-repeat="product in products | orderBy:orderProp">
+        <h2>{{product.name}}</h2>
+        <img src="{{product.image}}" class="img-responsive">
+        <p class="price">{{product.price | currency : symbol}}</p>
+        <p>{{product.description}}</p>
+        <p><small>Product id: #{{product.uniqueId}}</small></p>
         <button class="btn btn-primary">Add to Cart</button>
-      </div>    
-      <div class="col-sm-3">
-        <h2>Product Name</h2>
-        <img src="http://placehold.it/400x400" class="img-responsive">
-        <p class="price">$000</p>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
-        <p><small>Product id: #444000</small></p>
-        <button class="btn btn-primary">Add to Cart</button>      
-      </div>  
-      <div class="col-sm-3">
-        <h2>Product Name</h2>
-        <img src="http://placehold.it/400x400" class="img-responsive">
-        <p class="price">$000</p>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
-        <p><small>Product id: #444000</small></p>
-        <button class="btn btn-primary">Add to Cart</button>      
-      </div>  
-      <div class="col-sm-3">
-        <h2>Product Name</h2>
-        <img src="http://placehold.it/400x400" class="img-responsive">
-        <p class="price">$000</p>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
-        <p><small>Product id: #444000</small></p>
-        <button class="btn btn-primary">Add to Cart</button>      
-      </div>            
-    </div>
-  </div>
-</section>
-<section id="cart" ng-controller="cartController">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="text-center margin-top-80"><h3>Your Shopping Cart</h3></div>
-        <div class="table-responsive">
-          <table class="table">
-            <tr>
-              <th>Image</th>
-              <th>Item Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Remove</th>
-            </tr>
-            <tr>
-              <td><img src="http://placehold.it/110x110"></td>
-              <td>Item Name</td>
-              <td>Aenean lacinia bibendum nulla sed consectetur.</td>
-              <td>$44</td>
-              <td><button class="btn btn-danger">X</button></td>
-            </tr>
-          </table>
-        </div>
-        <button class="btn btn-success pull-right">Checkout</button>
-      </div>
+      </div>              
     </div>
   </div>
 </section>
